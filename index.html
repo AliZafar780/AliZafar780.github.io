@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ali Zafar - Security Researcher • AI Systems Architect • Photographer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-card: #1a1a1a;
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0a0;
+            --accent: #00ff88;
+            --accent-hover: #00cc6a;
+            --border: #2a2a2a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--accent);
+        }
+
+        .navbar {
+            background-color: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0;
+        }
+
+        .navbar-brand {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            color: var(--text-primary) !important;
+            letter-spacing: 2px;
+        }
+
+        .nav-link {
+            color: var(--text-secondary) !important;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--accent) !important;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 80%;
+        }
+
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+
+        /* Hero Section */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(10, 10, 10, 0.95) 0%, rgba(17, 17, 17, 0.95) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #hero::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 255, 136, 0.1) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            letter-spacing: 3px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-family: 'Courier New', monospace;
+        }
+
+        .hero-tagline {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 3rem;
+            font-style: italic;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-tagline::before,
+        .hero-tagline::after {
+            content: '"';
+            font-size: 2rem;
+            color: var(--text-secondary);
+        }
+
+        .btn-custom {
+            background-color: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            padding: 12px 30px;
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            margin: 0 10px;
+        }
+
+        .btn-custom:hover {
+            background-color: var(--accent);
+            color: var(--bg-primary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0, 255, 136, 0.3);
+        }
+
+        /* About Section */
+        #about {
+            background-color: var(--bg-secondary);
+        }
+
+        .about-content {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            background-color: var(--bg-card);
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.1);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Projects Section */
+        #projects {
+            background-color: var(--bg-primary);
+        }
+
+        .project-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 0;
+            background-color: var(--accent);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover::before {
+            height: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateX(10px);
+            border-color: var(--accent);
+            box-shadow: -5px 0 20px rgba(0, 255, 136, 0.1);
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .project-tag {
+            background-color: var(--bg-primary);
+            padding: 5px 12px;
+            font-size: 0.8rem;
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+        }
+
+        .project-tag:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* Skills Section */
+        #skills {
+            background-color: var(--bg-secondary);
+        }
+
+        .skill-category {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .skill-category-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-item {
+            margin-bottom: 1rem;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .skill-bar {
+            height: 4px;
+            background-color: var(--bg-primary);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background-color: var(--accent);
+            transition: width 1s ease;
+        }
+
+        /* Photography Section */
+        #photography {
+            background-color: var(--bg-primary);
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .photo-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            border-color: var(--accent);
+        }
+
+        .photo-placeholder {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .photo-placeholder::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0, 0, 0, 0.1) 2px,
+                rgba(0, 0, 0, 0.1) 4px
+            );
+        }
+
+        .photo-placeholder i {
+            font-size: 4rem;
+            color: var(--text-secondary);
+            z-index: 1;
+        }
+
+        .photo-info {
+            padding: 1.5rem;
+        }
+
+        .photo-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .photo-description {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Blog Section */
+        #blog {
+            background-color: var(--bg-secondary);
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .blog-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .blog-date {
+            color: var(--accent);
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .blog-excerpt {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .blog-read-more {
+            color: var(--accent);
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Contact Section */
+        #contact {
+            background-color: var(--bg-primary);
+        }
+
+        .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            margin-top: 3rem;
+        }
+
+        .contact-link {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 1.5rem 2.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s ease;
+            min-width: 250px;
+        }
+
+        .contact-link:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.1);
+        }
+
+        .contact-link i {
+            font-size: 1.5rem;
+            color: var(--accent);
+        }
+
+        .contact-link-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-value {
+            font-size: 1rem;
+            color: var(--text-primary);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer-text {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-credit {
+            color: var(--accent);
+            font-size: 1rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .hero-tagline {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .contact-link {
+                min-width: 100%;
+            }
+
+            .photo-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#hero">AZ</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="border-color: var(--border);">
+                <i class="fas fa-bars" style="color: var(--text-primary);"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#skills">Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#photography">Photography</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#blog">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Ali Zafar</h1>
+                <p class="hero-subtitle">Security Researcher • AI Systems Architect • Photographer</p>
+                <p class="hero-tagline">If it exists, I want to know how it breaks, how it's built, and how it can be made 10× stronger.</p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-custom">View Projects</a>
+                    <a href="#contact" class="btn btn-custom">Get In Touch</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About</h2>
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <div class="about-content">
+                        <p>I'm a security researcher and AI systems architect driven by an insatiable curiosity about how systems work—and how they can be broken. My journey spans cybersecurity, machine learning, and digital photography, each discipline informing the others in unexpected ways.</p>
+                        <p>In security, I believe the best defense comes from understanding offense. In AI, I focus on building systems that are not just powerful, but also secure and interpretable. Through photography, I capture moments that tell stories about the intersection of technology and human experience.</p>
+                        <p>Every project I undertake follows a simple philosophy: understand the underlying mechanics, identify the weaknesses, and build something stronger than what existed before.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="stats-container">
+                        <div class="stat-card">
+                            <div class="stat-number">50+</div>
+                            <div class="stat-label">Projects</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">6+</div>
+                            <div class="stat-label">Years Exp</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">3</div>
+                            <div class="stat-label">Domains</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">Projects</h2>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="project-card">
+                        <h3 class="project-title">Z-SHIELD PRO</h3>
+                        <p class="project-description">Advanced cybersecurity framework with real-time threat detection, automated vulnerability scanning, and incident response capabilities. Designed for enterprise-grade protection.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Security</span>
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">ML</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="project-card">
+                        <h3 class="project-title">AI-Book-Writer</h3>
+                        <p class="project-description">Intelligent book generation system that uses large language models to create coherent narratives, with support for multiple genres and custom writing styles.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">AI/ML</span>
+                            <span class="project-tag">NLP</span>
+                            <span class="project-tag">Python</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="project-card">
+                        <h3 class="project-title">WhisperComm Ghost</h3>
+                        <p class="project-description">Secure communication platform with end-to-end encryption and self-destructing messages. Features zero-knowledge architecture and anonymous routing.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Security</span>
+                            <span class="project-tag">Cryptography</span>
+                            <span class="project-tag">Networking</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="project-card">
+                        <h3 class="project-title">Z-Lang</h3>
+                        <p class="project-description">Custom programming language designed for security-focused applications. Built-in memory safety features, secure by default design principles, and robust type system.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Programming</span>
+                            <span class="project-tag">Compiler Design</span>
+                            <span class="project-tag">Rust</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="project-card">
+                        <h3 class="project-title">Custom Firewall</h3>
+                        <p class="project-description">Next-generation firewall with deep packet inspection, behavioral analysis, and machine learning-based threat detection. Supports custom rule sets and real-time monitoring.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Security</span>
+                            <span class="project-tag">Networking</span>
+                            <span class="project-tag">Linux</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="project-card">
+                        <h3 class="project-title">Metadata Analyzer</h3>
+                        <p class="project-description">Advanced metadata extraction and analysis tool for digital forensics. Supports hundreds of file formats, chain-of-custody tracking, and comprehensive reporting.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Forensics</span>
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">Security</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">Skills</h2>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="skill-category">
+                        <h3 class="skill-category-title">
+                            <i class="fas fa-shield-alt"></i>
+                            Cybersecurity
+                        </h3>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>Penetration Testing</span>
+                                <span>95%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 95%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>Vulnerability Assessment</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 90%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>Digital Forensics</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="skill-category">
+                        <h3 class="skill-category-title">
+                            <i class="fas fa-brain"></i>
+                            AI/ML
+                        </h3>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>Machine Learning</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 90%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>Deep Learning</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>Natural Language Processing</span>
+                                <span>80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 80%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="skill-category">
+                        <h3 class="skill-category-title">
+                            <i class="fas fa-code"></i>
+                            Programming
+                        </h3>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>Python</span>
+                                <span>95%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 95%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>C/C++</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>Rust</span>
+                                <span>75%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 75%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="skill-category">
+                        <h3 class="skill-category-title">
+                            <i class="fas fa-tools"></i>
+                            Tools/Frameworks
+                        </h3>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>Kubernetes</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>Docker</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 90%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>AWS/GCP</span>
+                                <span>80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 80%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Photography Section -->
+    <section id="photography">
+        <div class="container">
+            <h2 class="section-title">Photography</h2>
+            <div class="photo-grid">
+                <div class="photo-card">
+                    <div class="photo-placeholder">
+                        <i class="fas fa-city"></i>
+                    </div>
+                    <div class="photo-info">
+                        <h3 class="photo-title">Urban Decay</h3>
+                        <p class="photo-description">Capturing the beauty in abandoned structures and forgotten spaces</p>
+                    </div>
+                </div>
+                <div class="photo-card">
+                    <div class="photo-placeholder">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <div class="photo-info">
+                        <h3 class="photo-title">City Lights</h3>
+                        <p class="photo-description">Neon dreams and urban nightlife photography</p>
+                    </div>
+                </div>
+                <div class="photo-card">
+                    <div class="photo-placeholder">
+                        <i class="fas fa-mountain"></i>
+                    </div>
+                    <div class="photo-info">
+                        <h3 class="photo-title">Mountain Solitude</h3>
+                        <p class="photo-description">Landscape photography in remote mountain ranges</p>
+                    </div>
+                </div>
+                <div class="photo-card">
+                    <div class="photo-placeholder">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="photo-info">
+                        <h3 class="photo-title">Street Portraits</h3>
+                        <p class="photo-description">Candid moments and authentic human stories</p>
+                    </div>
+                </div>
+                <div class="photo-card">
+                    <div class="photo-placeholder">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <div class="photo-info">
+                        <h3 class="photo-title">Coastal Lines</h3>
+                        <p class="photo-description">Where land meets sea—coastal landscape photography</p>
+                    </div>
+                </div>
+                <div class="photo-card">
+                    <div class="photo-placeholder">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <div class="photo-info">
+                        <h3 class="photo-title">Golden Hour</h3>
+                        <p class="photo-description">Magic light and atmospheric portraits</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog">
+        <div class="container">
+            <h2 class="section-title">Blog</h2>
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <p class="blog-date">Coming Soon</p>
+                    <h3 class="blog-title">The Art of Breaking Things</h3>
+                    <p class="blog-excerpt">Exploring how understanding vulnerabilities leads to stronger systems...</p>
+                    <span class="blog-read-more">Read More <i class="fas fa-arrow-right"></i></span>
+                </div>
+                <div class="blog-card">
+                    <p class="blog-date">Coming Soon</p>
+                    <h3 class="blog-title">AI Security in 2024</h3>
+                    <p class="blog-excerpt">Emerging threats and defense strategies for machine learning systems...</p>
+                    <span class="blog-read-more">Read More <i class="fas fa-arrow-right"></i></span>
+                </div>
+                <div class="blog-card">
+                    <p class="blog-date">Coming Soon</p>
+                    <h3 class="blog-title">Building Z-Lang</h3>
+                    <p class="blog-excerpt">Lessons learned from designing a security-focused programming language...</p>
+                    <span class="blog-read-more">Read More <i class="fas fa-arrow-right"></i></span>
+                </div>
+                <div class="blog-card">
+                    <p class="blog-date">Coming Soon</p>
+                    <h3 class="blog-title">Photography as Debugging</h3>
+                    <p class="blog-excerpt">How my approach to photography parallels my security research...</p>
+                    <span class="blog-read-more">Read More <i class="fas fa-arrow-right"></i></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container text-center">
+            <h2 class="section-title">Get In Touch</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 2rem;">Interested in collaborating or just want to chat? Reach out through any of these channels.</p>
+            <div class="contact-links">
+                <a href="mailto:alizafarbati@gmail.com" class="contact-link">
+                    <i class="fas fa-envelope"></i>
+                    <div class="contact-link-text">
+                        <span class="contact-label">Email</span>
+                        <span class="contact-value">alizafarbati@gmail.com</span>
+                    </div>
+                </a>
+                <a href="https://github.com/AliZafar780" target="_blank" class="contact-link">
+                    <i class="fab fa-github"></i>
+                    <div class="contact-link-text">
+                        <span class="contact-label">GitHub</span>
+                        <span class="contact-value">@AliZafar780</span>
+                    </div>
+                </a>
+                <a href="https://linkedin.com/in/alizafar" target="_blank" class="contact-link">
+                    <i class="fab fa-linkedin"></i>
+                    <div class="contact-link-text">
+                        <span class="contact-label">LinkedIn</span>
+                        <span class="contact-value">Ali Zafar</span>
+                    </div>
+                </a>
+                <a href="https://instagram.com/frames.by.alizafar" target="_blank" class="contact-link">
+                    <i class="fab fa-instagram"></i>
+                    <div class="contact-link-text">
+                        <span class="contact-label">Instagram</span>
+                        <span class="contact-value">@frames.by.alizafar</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p class="footer-text">&copy; 2024 Ali Zafar. All rights reserved.</p>
+            <p class="footer-credit">Built with depth, not decorators</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.backgroundColor = 'rgba(10, 10, 10, 0.98)';
+            } else {
+                navbar.style.backgroundColor = 'rgba(10, 10, 10, 0.95)';
+            }
+        });
+
+        // Animate skill bars on scroll
+        const observerOptions = {
+            threshold: 0.5
+        };
+
+        const skillObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const skillBars = entry.target.querySelectorAll('.skill-progress');
+                    skillBars.forEach(bar => {
+                        const width = bar.style.width;
+                        bar.style.width = '0';
+                        setTimeout(() => {
+                            bar.style.width = width;
+                        }, 100);
+                    });
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.skill-category').forEach(category => {
+            skillObserver.observe(category);
+        });
+
+        // Add parallax effect to hero
+        window.addEventListener('scroll', function() {
+            const hero = document.querySelector('#hero');
+            const scrolled = window.scrollY;
+            hero.style.transform = `translateY(${scrolled * 0.3}px)`;
+        });
+    </script>
+</body>
+</html>

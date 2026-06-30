@@ -3,6 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ali Zafar — Security Researcher, AI Systems Architect & Photographer. Exploring how systems break, how they're built, and how to make them 10x stronger.">
+    <meta name="keywords" content="Ali Zafar, security researcher, AI architect, cybersecurity, penetration testing, AI/ML, digital forensics, photographer">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0a0a0a">
+    <meta name="author" content="Ali Zafar">
+
+    <!-- Open Graph / Social -->
+    <meta property="og:title" content="Ali Zafar — Security Researcher & AI Systems Architect">
+    <meta property="og:description" content="Exploring how systems break, how they're built, and how to make them 10x stronger.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://AliZafar780.github.io">
+    <meta property="og:site_name" content="Ali Zafar">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ali Zafar — Security Researcher & AI Systems Architect">
+    <meta name="twitter:description" content="Exploring how systems break, how they're built, and how to make them 10x stronger.">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Ali Zafar",
+        "url": "https://AliZafar780.github.io",
+        "email": "alizafarbati@gmail.com",
+        "jobTitle": ["Security Researcher", "AI Systems Architect", "Photographer"],
+        "sameAs": [
+            "https://github.com/AliZafar780",
+            "https://linkedin.com/in/alizafar",
+            "https://instagram.com/frames.by.alizafar"
+        ],
+        "description": "Security researcher and AI systems architect driven by curiosity about how systems work and how they can be broken."
+    }
+    </script>
+
     <title>Ali Zafar - Security Researcher • AI Systems Architect • Photographer</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -72,6 +109,10 @@
             font-weight: bold;
             color: var(--text-primary) !important;
             letter-spacing: 2px;
+        }
+
+        .nav-item {
+            position: relative;
         }
 
         .nav-link {
@@ -627,7 +668,7 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg fixed-top">
+    <nav class="navbar navbar-expand-lg fixed-top" role="navigation" aria-label="Main navigation">
         <div class="container">
             <a class="navbar-brand" href="#hero">AZ</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="border-color: var(--border);">
@@ -636,22 +677,22 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#about">About</a>
+                        <a class="nav-link" href="#about" aria-label="Navigate to About section">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#projects">Projects</a>
+                        <a class="nav-link" href="#projects" aria-label="Navigate to Projects section">Projects</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#skills">Skills</a>
+                        <a class="nav-link" href="#skills" aria-label="Navigate to Skills section">Skills</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#photography">Photography</a>
+                        <a class="nav-link" href="#photography" aria-label="Navigate to Photography section">Photography</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#blog">Blog</a>
+                        <a class="nav-link" href="#blog" aria-label="Navigate to Blog section">Blog</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#contact">Contact</a>
+                        <a class="nav-link" href="#contact" aria-label="Navigate to Contact section">Contact</a>
                     </li>
                 </ul>
             </div>
@@ -666,8 +707,8 @@
                 <p class="hero-subtitle">Security Researcher • AI Systems Architect • Photographer</p>
                 <p class="hero-tagline">If it exists, I want to know how it breaks, how it's built, and how it can be made 10× stronger.</p>
                 <div class="hero-buttons">
-                    <a href="#projects" class="btn btn-custom">View Projects</a>
-                    <a href="#contact" class="btn btn-custom">Get In Touch</a>
+                    <a href="#projects" class="btn btn-custom" aria-label="View projects section">View Projects</a>
+                    <a href="#contact" class="btn btn-custom" aria-label="Get in touch via contact section">Get In Touch</a>
                 </div>
             </div>
         </div>
@@ -1031,28 +1072,28 @@
             <h2 class="section-title">Get In Touch</h2>
             <p style="color: var(--text-secondary); margin-bottom: 2rem;">Interested in collaborating or just want to chat? Reach out through any of these channels.</p>
             <div class="contact-links">
-                <a href="mailto:alizafarbati@gmail.com" class="contact-link">
+                <a href="mailto:alizafarbati@gmail.com" class="contact-link" aria-label="Send email to Ali Zafar">
                     <i class="fas fa-envelope"></i>
                     <div class="contact-link-text">
                         <span class="contact-label">Email</span>
                         <span class="contact-value">alizafarbati@gmail.com</span>
                     </div>
                 </a>
-                <a href="https://github.com/AliZafar780" target="_blank" class="contact-link">
+                <a href="https://github.com/AliZafar780" target="_blank" rel="noopener noreferrer" class="contact-link" aria-label="Visit Ali Zafar on GitHub">
                     <i class="fab fa-github"></i>
                     <div class="contact-link-text">
                         <span class="contact-label">GitHub</span>
                         <span class="contact-value">@AliZafar780</span>
                     </div>
                 </a>
-                <a href="https://linkedin.com/in/alizafar" target="_blank" class="contact-link">
+                <a href="https://linkedin.com/in/alizafar" target="_blank" rel="noopener noreferrer" class="contact-link" aria-label="Visit Ali Zafar on LinkedIn">
                     <i class="fab fa-linkedin"></i>
                     <div class="contact-link-text">
                         <span class="contact-label">LinkedIn</span>
                         <span class="contact-value">Ali Zafar</span>
                     </div>
                 </a>
-                <a href="https://instagram.com/frames.by.alizafar" target="_blank" class="contact-link">
+                <a href="https://instagram.com/frames.by.alizafar" target="_blank" rel="noopener noreferrer" class="contact-link" aria-label="Visit Ali Zafar on Instagram">
                     <i class="fab fa-instagram"></i>
                     <div class="contact-link-text">
                         <span class="contact-label">Instagram</span>
@@ -1066,7 +1107,7 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p class="footer-text">&copy; 2024 Ali Zafar. All rights reserved.</p>
+            <p class="footer-text">&copy; 2026 Ali Zafar. All rights reserved.</p>
             <p class="footer-credit">Built with depth, not decorators</p>
         </div>
     </footer>
@@ -1121,11 +1162,11 @@
             skillObserver.observe(category);
         });
 
-        // Add parallax effect to hero
+        // Parallax effect on hero background
         window.addEventListener('scroll', function() {
             const hero = document.querySelector('#hero');
             const scrolled = window.scrollY;
-            hero.style.transform = `translateY(${scrolled * 0.3}px)`;
+            hero.style.backgroundPosition = `center ${scrolled * 0.3}px`;
         });
     </script>
 </body>
